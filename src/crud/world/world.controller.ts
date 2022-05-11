@@ -23,8 +23,10 @@ import { ValidationPipe } from '../pipes/validation.pipe';
 import { AuthGuard } from '../guards/auth.guard';
 import { Roles } from '../decorators/roles.decorator';
 import { LoggingInterceptor } from '../interceptors/logging.interceptor';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 
 @Controller('world')
+@UseGuards(JwtAuthGuard)
 @UseInterceptors(new LoggingInterceptor())
 export class WorldController {
   constructor(private worldService: WorldService) {}
