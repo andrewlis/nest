@@ -10,6 +10,8 @@ import { World } from './entities/world.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { Users } from './entities/user.entity';
+import { Card } from './entities/card.entity';
+import { CardsModule } from './cards/cards.module';
 
 @Module({
   imports: [
@@ -18,17 +20,17 @@ import { Users } from './entities/user.entity';
     EventsModule,
     TypeOrmModule.forRoot({
       // todo вынести в конфигурационный файл
-      // mysql.server start в терминале
       type: 'mysql',
       host: 'localhost',
       retryAttempts: 2,
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [World, Users],
+      entities: [World, Users, Card],
       synchronize: false,
     }),
     AuthModule,
+    CardsModule,
     UsersModule,
   ],
   controllers: [AppController],
